@@ -1,17 +1,29 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 3
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Todos os Produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-button *ngIf="!showList" expand="block" (click)="toggleList()">
+    Mostrar Todos os Produtos
+  </ion-button>
+  
+  <ion-button *ngIf="showList" expand="block" color="danger" (click)="toggleList()">
+    Ocultar Lista de Produtos
+  </ion-button>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-list *ngIf="showList" class="ion-margin-top">
+    <ion-item *ngFor="let product of productService.productsList" routerDirection="forward">
+      <ion-thumbnail slot="start">
+        <img [src]="product.image" alt="{{ product.title }}" />
+      </ion-thumbnail>
+      <ion-label>
+        <h3>{{ product.title }}</h3>
+        <p>{{ product.price | currency:'USD' }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
 </ion-content>

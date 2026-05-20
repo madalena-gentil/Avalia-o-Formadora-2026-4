@@ -1,17 +1,61 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Navegar Produtos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  
+  <ion-loading [isOpen]="isLoading" message="Carregando produtos..."></ion-loading>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div *ngIf="!isLoading">
+    <ion-card class="product-detail-card">
+      <div class="product-image-container">
+        <img [src]="productService.productsList[currentIndex]?.image" alt="Imagem do Produto" />
+      </div>
+      
+      <ion-card-header>
+        <ion-card-subtitle class="category-badge">
+          {{ productService.productsList[currentIndex]?.category }}
+        </ion-card-subtitle>
+        <ion-card-title class="product-title">
+          {{ productService.productsList[currentIndex]?.title }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <p class="product-description">
+          {{ productService.productsList[currentIndex]?.description }}
+        </p>
+        <h2 class="product-price">
+          {{ productService.productsList[currentIndex]?.price | currency:'USD' }}
+        </h2>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-row class="ion-margin-top">
+      <ion-col size="6">
+        <ion-button 
+          expand="block" 
+          fill="outline" 
+          (click)="previousProduct()" 
+          [disabled]="currentIndex === 0">
+          Anterior
+        </ion-button>
+      </ion-col>
+      
+      <ion-col size="6">
+        <ion-button 
+          expand="block" 
+          (click)="nextProduct()" 
+          [disabled]="currentIndex === productService.productsList.length - 1">
+          Próximo
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    
+    <p class="ion-text-center item-counter">
+      Produto {{ currentIndex + 1 }} de {{ productService.productsList.length }}
+    </p>
+  </div>
 </ion-content>

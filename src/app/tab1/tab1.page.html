@@ -1,17 +1,32 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+  <ion-toolbar color="primary">
+    <ion-title>Perfil Aluno</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-card class="profile-card">
+    <div class="avatar-container">
+      <ion-avatar>
+        <img src="assets/icon/foto.png" />
+      </ion-avatar>
+    </div>
+    
+    <ion-card-header class="ion-text-center">
+      <ion-card-title>Madalena França Gentil Veiga</ion-card-title>
+      <ion-card-subtitle>Análise e Desenvolvimento de Sistemas</ion-card-subtitle>
+    </ion-card-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-card-content>
+      <div class="info-item">
+        <strong>Turma:</strong> <span>ADS0301M</span>
+      </div>
+      <div class="info-item">
+        <strong>Unidade:</strong> <span>Bonsucesso</span>
+      </div>
+      <div class="info-item">
+        <strong>Turno:</strong> <span>Manhã</span>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

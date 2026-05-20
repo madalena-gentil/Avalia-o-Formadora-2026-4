@@ -1,18 +1,72 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule, NgIf, CurrencyPipe } from '@angular/common';
+import { ProductService } from '../services/product';
+import { 
+  IonHeader, 
+  IonToolbar, 
+  IonTitle, 
+  IonContent, 
+  IonCard, 
+  IonCardHeader, 
+  IonCardTitle, 
+  IonCardSubtitle, 
+  IonCardContent, 
+  IonButton, 
+  IonRow, 
+  IonCol, 
+  IonLoading 
+} from '@ionic/angular/standalone';
 
-import { Tab2Page } from './tab2.page';
+@Component({
+  selector: 'app-tab2',
+  templateUrl: 'tab2.page.html',
+  styleUrls: ['tab2.page.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    NgIf,
+    CurrencyPipe,
+    IonHeader, 
+    IonToolbar, 
+    IonTitle, 
+    IonContent, 
+    IonCard, 
+    IonCardHeader, 
+    IonCardTitle, 
+    IonCardSubtitle, 
+    IonCardContent, 
+    IonButton, 
+    IonRow, 
+    IonCol, 
+    IonLoading
+  ]
+})
+export class Tab2Page implements OnInit {
+  currentIndex: number = 0;
+  isLoading: boolean = true;
 
-describe('Tab2Page', () => {
-  let component: Tab2Page;
-  let fixture: ComponentFixture<Tab2Page>;
+  constructor(public productService: ProductService) {}
 
-  beforeEach(async () => {
-    fixture = TestBed.createComponent(Tab2Page);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  async ngOnInit() {
+    try {
+      // Executa a busca dos dados
+      await this.productService.loadProducts();
+    } catch (error) {
+      console.error('Erro ao carregar na Tab 2:', error);
+    } finally {
+      this.isLoading = false;
+    }
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  nextProduct() {
+    if (this.productService.productsList.length > 0 && this.currentIndex < this.productService.productsList.length - 1) {
+      this.currentIndex++;
+    }
+  }
+
+  previousProduct() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+}

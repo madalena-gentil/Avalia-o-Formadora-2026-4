@@ -1,0 +1,29 @@
+.profile-card {
+  --background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 16px 0;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+
+  ion-avatar {
+    width: 120px;
+    height: 120px;
+    border: 3px solid var(--ion-color-primary);
+  }
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
