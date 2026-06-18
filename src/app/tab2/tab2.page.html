@@ -33,26 +33,34 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-row class="ion-margin-top">
-      <ion-col size="6">
-        <ion-button 
-          expand="block" 
-          fill="outline" 
-          (click)="previousProduct()" 
-          [disabled]="currentIndex === 0">
-          Anterior
-        </ion-button>
-      </ion-col>
-      
-      <ion-col size="6">
-        <ion-button 
-          expand="block" 
-          (click)="nextProduct()" 
-          [disabled]="currentIndex === productService.productsList.length - 1">
-          Próximo
-        </ion-button>
-      </ion-col>
-    </ion-row>
+<ion-row class="ion-margin-top">
+  <ion-col size="12">
+    <ion-button expand="block" color="success" (click)="salvarNoFirebase()">
+      Salvar no Firebase
+    </ion-button>
+  </ion-col>
+</ion-row>
+
+<ion-row>
+  <ion-col size="6">
+    <ion-button 
+      expand="block" 
+      fill="outline" 
+      (click)="previousProduct()" 
+      [disabled]="currentIndex === 0">
+      Anterior
+    </ion-button>
+  </ion-col>
+  
+  <ion-col size="6">
+    <ion-button 
+      expand="block" 
+      (click)="nextProduct()" 
+      [disabled]="currentIndex === productService.productsList.length - 1">
+      Próximo
+    </ion-button>
+  </ion-col>
+</ion-row>
     
     <p class="ion-text-center item-counter">
       Produto {{ currentIndex + 1 }} de {{ productService.productsList.length }}
