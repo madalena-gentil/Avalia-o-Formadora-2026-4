@@ -44,6 +44,7 @@ import {
 export class Tab2Page implements OnInit {
   currentIndex: number = 0;
   isLoading: boolean = true;
+salvarNoFirebase: any;
 
   constructor(public productService: ProductService) {}
 
